@@ -7,15 +7,19 @@
 ## Emmet
 
 - Generate html structure
+
   `html:5`
 - script
+
   `script:src`
 - link with css
+
   `link:css`
 
 ## Prettier
 
 - run from command line
+
   `prettier \"src/**/*.{js, html}\"`
 
 ## ESLINT
@@ -29,6 +33,7 @@
 - on production: `npm ci` will use the package-lock insteade of the package.json to install the exactly the correct versions
 - Importing - curly braces or not?
   - curly braces: when importing single feature; it's live code inclusion: it includes only the code we want to run (if they packaged it correctly)
+  
   ```javascript
   import { render } from "react-dom";
   ```
@@ -60,7 +65,9 @@ import { Something } from ...
   - JSX: write js directly in html; translates to React code
 
 - Understand React correctly:
-  `npm install -D babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react`
+  ```bash
+  npm install -D babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+  ```
 
   - `babel-eslint` allows eslint to be augumented by Babel (the transpiler). Eslint doesn't understand React out of the box. `eslint-plugin-import` gives some rules about importing and exporting things. `eslint-plugin-jsx-a11y` - simple accessability; things for accesibility (e.g. don't make divs clickable). `eslint-plugin-react` - additional react rules.
 
