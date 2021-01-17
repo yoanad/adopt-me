@@ -99,6 +99,12 @@ const [location, setLocation] = useState("Seattle, WA");
 - you can spare yourself setting the state
 - !!! hooks never go inside `if` statements or `for` loops!!! They are keeping track of the order in which we are creating hooks, a.k.a the order we are calling these hooks
 
+#### useEffect
+
+- takes place of several of the lifecycle hooks, e.g. componentDidMount, componentWillUnmount, componentDidUpdate
+- it's disconnected from when the render is actually happening
+-
+
 #### Custom hook
 
 ```javascript
@@ -137,3 +143,58 @@ const [breed, BreedDropdown] = useDropdown("Breed", "", breeds);
 ...
 <BreedDropdown />```
 ````
+
+## Strict mode
+- future proof you application
+- if you are using one of the unstable APIs, it will trigger warnings
+
+## Class components 
+- functional components === stateless components
+- componentDidMount - runs once and then it stops; useful for ajax requests
+- super(props) calls the constructor on the parent class (which is often React.Component)
+```
+    constructor(props) {
+        super(props);
+    }
+```
+- `getDerivedStateFromProps`
+  - invoked right before calling the render method, both on the initial mount and on subsequent updates
+  - it should return an object to update the state, or null to update nothing
+  - used for when the state depends on changes in props
+
+## Babel
+- `"@babel/preset-react"` => brings all the things you need to transiple react
+- `"@babel/preset-env"` => will transpile the code to the env you specify
+- `"@babel/plugin-proposal-class-properties"` => allows us to use new syntax
+
+## React context
+In App.js
+```js
+const App = () => {
+  const themeHook = useState("darkblue");
+  return (
+    <React.StrictMode>
+      <ThemeContext.Provider value={themeHook}>
+        <div>
+          <header>
+            <Link id="something-important" to="/">Adopt me!</Link>
+          </header>
+          <Router>
+            <SearchParams path="/" />
+            <Details path="/details/:id" />
+          </Router>
+        </div>
+      </ThemeContext.Provider>
+    </React.StrictMode>
+  );
+};
+```
+
+In a child component:
+```js
+  <ThemeContext.Consumer>
+      {(themeHook) => (<button style={{ backgroundColor: themeHook[0] }}>
+          Adopt {name}
+      </button>)}
+  </ThemeContext.Consumer>
+```
